@@ -1,0 +1,48 @@
+Step 1:
+Create a ContentPage or ContentView file in the solution and give the file name like this. -> MyInnerResourceDictionary.xaml.
+	1.1: Remove the code behind file.
+	1.2: in the XAML file change the name of the base class from ContentView or ContentPage to ResourceDictionary. 
+	In addition, remove the x:Class attribute from the root tag of the file.
+
+Step 2:
+Consume Resource Dictionary file in the MainPage.xaml [Check Source Code].
+
+If we want to develop external style inside the .Net standard Class library.
+
+Step 3:
+Create .Net Standard Class Library. 
+	3.1 Select the solution and Unload the Project.
+	3.2 Select the solution and Edit Project file.
+	3.3 Add the following reference in the .csproj file project.
+	<ItemGroup>
+		<PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+	</ItemGroup>
+    3.4 
+	Create a ContentPage or ContentView file in the solution and give the file name like this. -> MyOuterResourceDictionary.xaml [Check Source Code]
+		Do not remove the code behind file.
+		in the XAML file change the name of the base class from ContentView or ContentPage to ResourceDictionary. 
+		add x:Class attribute from the root tag of the file.
+
+Step 4:
+Add the project refereance in Main the Solution.
+
+Step 5:
+Go to MainPage.xaml file.
+	5.1 
+	Add the external style referance in root tag
+	xmlns:mystyles="clr-namespace:StylesLib.MyStyles;assembly=StylesLib"
+
+	5.2
+	Using Merge Dictionary call the external style referance
+	 <ContentPage.Resources>
+        <!--Internal Style-->
+        <ResourceDictionary Source="RootStyles/MyInnerResourceDictionary.xaml">
+            <!--For External Library-->
+            <ResourceDictionary.MergedDictionaries>
+                <mystyles:MyOuterResourceDictionary></mystyles:MyOuterResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+

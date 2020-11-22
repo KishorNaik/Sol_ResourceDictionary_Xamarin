@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mystyles="clr-namespace:StylesLib.MyStyles;assembly=StylesLib"
+             x:Class="Sol_Demo.MainPage">
+
+    <ContentPage.Resources>
+        <!--Internal Style-->
+        <ResourceDictionary Source="RootStyles/MyInnerResourceDictionary.xaml">
+            <!--For External Library-->
+            <ResourceDictionary.MergedDictionaries>
+                <mystyles:MyOuterResourceDictionary></mystyles:MyOuterResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Button Style="{x:StaticResource btnSubmit}"></Button>
+        <Button Style="{x:StaticResource Key=btnCancel}"></Button>
+    </StackLayout>
+</ContentPage>
